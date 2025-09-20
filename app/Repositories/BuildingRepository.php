@@ -9,11 +9,11 @@ class BuildingRepository implements BuildingRepositoryInterface
 {
     public function getAll()
     {
-        // TODO: Implement getAll() method.
+        return Building::all();
     }
 
     public function getUnitsByBuilding(Building $building)
     {
-        // TODO: Implement getUnitsByBuilding() method.
+        return $building->units()->get();
     }
 }
