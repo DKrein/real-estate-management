@@ -11,7 +11,7 @@ class UnitFactory extends Factory
 
     public function definition(): array
     {
-        $types = ['apartment', 'room', 'office', 'store', 'other'];
+        $types = ['apartment', 'room', 'office', 'store', 'unit'];
         $type = $this->faker->randomElement($types);
         $number = $this->faker->numberBetween(1, 100);
 
