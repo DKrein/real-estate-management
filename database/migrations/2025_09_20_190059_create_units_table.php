@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('building_id')->constrained()->cascadeOnDelete();
             $table->string('name'); // e.g., "Apartment 3" or "Room 101"
             $table->string('floor')->nullable();
-            $table->enum('type', ['apartment', 'room', 'office', 'store', 'other'])->default('apartment');
+            $table->enum('type', ['apartment', 'room', 'office', 'store', 'unit'])->default('apartment');
             $table->timestamps();
         });
     }
