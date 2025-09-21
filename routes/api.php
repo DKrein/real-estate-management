@@ -5,3 +5,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('buildings', [BuildingController::class, 'index']);
 Route::get('buildings/{building}/units', [BuildingController::class, 'units']);
+Route::get('buildings/{building}/tasks', [BuildingController::class, 'tasks']);
