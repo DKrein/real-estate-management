@@ -17,7 +17,7 @@ class BuildingController extends Controller
 
     /**
      * List all buildings.
-     * 
+     *
      * @return JsonResponse
      */
     public function index(): JsonResponse
@@ -35,6 +35,18 @@ class BuildingController extends Controller
     public function units(Building $building): JsonResponse
     {
         $units = $this->buildingService->getUnitsByBuilding($building);
+        return response()->json($units);
+    }
+
+    /**
+     * List all tasks related to a building.
+     *
+     * @param Building $building
+     * @return JsonResponse
+     */
+    public function tasks(Building $building): JsonResponse
+    {
+        $units = $this->buildingService->getTasksByBuilding($building);
         return response()->json($units);
     }
 }
