@@ -23,4 +23,12 @@ interface BuildingRepositoryInterface
      * @return Collection
      */
     public function getTasksByBuilding(Building $building): Collection;
+
+    /**
+     * @param Building $building
+     * @param array $filters
+     * @return Collection
+     */
+    public function getBuildingTasksWithFilters(Building $building, array $filters = []): Collection;
+
 }

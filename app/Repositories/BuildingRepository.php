@@ -33,4 +33,37 @@ class BuildingRepository implements BuildingRepositoryInterface
     {
         return $building->tasks()->get();
     }
+
+    /**
+     * @param Building $building
+     * @param array $filters
+     * @return Collection
+     */
+    public function getBuildingTasksWithFilters(Building $building, array $filters = []): Collection
+    {
+        $query = $building->tasks()->with('comments');
+
+        foreach ($filters as $field => $value) {
+            if (empty($value)) {
+                continue;
+            }
+
+            switch ($field) {
+                case 'status':
+                    $query->where('status', $value);
+                    break;
+                case 'assigned_user_id':
+                    $query->where('assigned_user_id', $value);
+                    break;
+                case 'created_from':
+                    $query->whereDate('created_at', '>=', $value);
+                    break;
+                case 'created_to':
+                    $query->whereDate('created_at', '<=', $value);
+                    break;
+            }
+        }
+
+        return $query->get();
+    }
 }
