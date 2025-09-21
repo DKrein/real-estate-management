@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 class StoreCommentRequest extends FormRequest
 {
@@ -26,5 +27,21 @@ class StoreCommentRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'content' => 'required|string',
         ];
+    }
+
+    /**
+     * Add param values to the formRequest body
+     * @return void
+     */
+    public function prepareForValidation(): void
+    {
+
+        Log::debug($this->route('task'));
+
+        if ($this->route('task')) {
+            $this->merge([
+                'task_id' => $this->route('task')->id,
+            ]);
+        }
     }
 }
