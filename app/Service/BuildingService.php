@@ -23,6 +23,18 @@ class BuildingService
 
     /**
      * @param Building $building
+     * @return Building
+     */
+    public function getBuildingTasksAndComments(Building $building): Building
+    {
+        return $building->load([
+            'tasks.comments',
+            'tasks.assignedUser'
+        ]);
+    }
+
+    /**
+     * @param Building $building
      * @return Collection
      */
     public function getUnitsByBuilding(Building $building): Collection
