@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
 use App\Service\TaskService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -27,21 +28,12 @@ class TaskController
     /**
      * Store a new task
      *
-     * @param Request $request
+     * @param StoreTaskRequest $request
      * @return JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(StoreTaskRequest $request): JsonResponse
     {
-        $validated = $request->validate([
-            'building_id' => 'required|exists:buildings,id',
-            'unit_id'     => 'nullable|exists:units,id',
-            'assigned_user_id' => 'nullable|exists:users,id',
-            'title'       => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status'      => 'required|in:open,in_progress,completed,rejected',
-        ]);
-
-        $task = $this->taskService->create($validated);
+        $task = $this->taskService->create($request->validated());
 
         return response()->json($task, 201);
     }

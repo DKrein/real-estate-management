@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCommentRequest;
 use App\Service\CommentService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -16,20 +17,13 @@ class CommentController
     /**
      * Store a new comment to a task
      *
-     * @param Request $request
-     * @param int $taskId
+     * @param StoreCommentRequest $request
      * @return JsonResponse
      */
-    public function store(Request $request, int $taskId): JsonResponse
+    public function store(StoreCommentRequest $request): JsonResponse
     {
-        $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'content' => 'required|string',
-        ]);
 
-        $validated['task_id'] = $taskId;
-
-        $comment = $this->commentService->create($validated);
+        $comment = $this->commentService->create($request->validated());
 
         return response()->json($comment, 201);
     }
