@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Building;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BuildingFactory extends Factory
@@ -17,7 +18,7 @@ class BuildingFactory extends Factory
         return [
             'name' => $this->faker->company() . ' Building',
             'address' => $this->faker->address(),
-            'owner_id' => null,
+            'owner_id' => User::factory(),
         ];
     }
 }
