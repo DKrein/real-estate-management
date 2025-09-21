@@ -24,7 +24,7 @@ class StoreTaskRequest extends FormRequest
         return [
             'building_id' => 'required|exists:buildings,id',
             'unit_id'     => 'nullable|exists:units,id',
-            'assigned_user_id' => 'nullable|exists:users,id',
+            'assigned_user_id' => 'required|exists:users,id',
             'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
             'status'      => 'required|in:open,in_progress,completed,rejected',
