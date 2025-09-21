@@ -35,6 +35,23 @@ class BuildingService
 
     /**
      * @param Building $building
+     * @param array $taskFilters
+     * @return array
+     */
+    public function getBuildingTasksAndCommentsFiltered(Building $building, array $taskFilters = []): array
+    {
+        $tasks = $this->buildingRepository->getBuildingTasksWithFilters($building, $taskFilters);
+
+        return [
+            'id' => $building->id,
+            'name' => $building->name,
+            'address' => $building->address,
+            'tasks' => $tasks
+        ];
+    }
+
+    /**
+     * @param Building $building
      * @return Collection
      */
     public function getUnitsByBuilding(Building $building): Collection
