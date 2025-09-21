@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCommentRequest;
+use App\Models\Task;
 use App\Service\CommentService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -22,7 +23,7 @@ class CommentController
      * @param StoreCommentRequest $request
      * @return JsonResponse
      */
-    public function store(StoreCommentRequest $request): JsonResponse
+    public function store(StoreCommentRequest $request, Task $task): JsonResponse
     {
         try {
             $comment = $this->commentService->create($request->validated());
