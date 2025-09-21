@@ -13,7 +13,7 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function getAll(): Collection
     {
-        // TODO: Implement getAll() method.
+        return Comment::all();
     }
 
     /**
