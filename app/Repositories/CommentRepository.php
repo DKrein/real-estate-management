@@ -2,12 +2,26 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Interface\TaskRepositoryInterface;
+use App\Models\Comment;
+use App\Repositories\Interface\CommentRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 
-class CommentRepository implements TaskRepositoryInterface
+class CommentRepository implements CommentRepositoryInterface
 {
-    public function getAll()
+    /**
+     * @return Collection
+     */
+    public function getAll(): Collection
     {
         // TODO: Implement getAll() method.
+    }
+
+    /**
+     * @param array $data
+     * @return Comment
+     */
+    public function create(array $data): Comment
+    {
+        return Comment::create($data);
     }
 }

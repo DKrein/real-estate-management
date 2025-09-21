@@ -2,12 +2,26 @@
 
 namespace App\Repositories;
 
+use App\Models\Task;
 use App\Repositories\Interface\TaskRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class TaskRepository implements TaskRepositoryInterface
 {
-    public function getAll()
+    /**
+     * @return Collection
+     */
+    public function getAll(): Collection
     {
-        // TODO: Implement getAll() method.
+        return Task::all();
+    }
+
+    /**
+     * @param array $data
+     * @return Task
+     */
+    public function create(array $data): Task
+    {
+        return Task::create($data);
     }
 }
