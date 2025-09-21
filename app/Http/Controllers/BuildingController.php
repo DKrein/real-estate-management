@@ -27,6 +27,19 @@ class BuildingController extends Controller
     }
 
     /**
+     * List information for a specific building.
+     *
+     * @param Building $building
+     * @return JsonResponse
+     */
+    public function show(Building $building): JsonResponse
+    {
+        $buildings = $this->buildingService->getBuildingTasksAndComments($building);
+        return response()->json($buildings);
+    }
+
+
+    /**
      * List all units inside a building.
      *
      * @param Building $building
