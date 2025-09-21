@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Collection;
 interface BuildingRepositoryInterface
 {
     /**
-     * @return mixed
+     * @return Collection
      */
-    public function getAll();
+    public function getAll(): Collection;
 
     /**
      * @param Building $building

@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 class BuildingRepository implements BuildingRepositoryInterface
 {
-    public function getAll()
+    /**
+     * @return Collection
+     */
+    public function getAll(): Collection
     {
         return Building::all();
     }
